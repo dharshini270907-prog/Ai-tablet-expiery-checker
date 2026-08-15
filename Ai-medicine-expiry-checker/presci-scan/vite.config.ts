@@ -13,7 +13,6 @@ export default defineConfig(async ({ command, mode }) => {
   // React plugin (JSX transform, fast refresh)
   const viteReact = (await import("@vitejs/plugin-react")).default;
 
-  // Nitro — only at build time (server runtime for Cloudflare / Node)
   const plugins = [
     tailwindcss(),
     tsConfigPaths({ projects: ["./tsconfig.json"] }),
@@ -24,9 +23,9 @@ export default defineConfig(async ({ command, mode }) => {
   if (command === "build") {
     try {
       const { nitro } = await import("nitro/vite");
-      plugins.push(nitro({ defaultPreset: "cloudflare-module" }));
+      plugins.push(nitro({ defaultPreset: "vercel" }));
     } catch {
-      // nitro not installed — skip server bundling (dev-only usage is fine)
+      // nitro not installed
     }
   }
 
