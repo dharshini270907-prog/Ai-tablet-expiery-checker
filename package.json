@@ -1,0 +1,9 @@
+{
+  "name": "ai-tablet-expiry-checker-root",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm --prefix presci-scan install",
+    "build": "npm --prefix presci-scan run build && node ./scripts/sync-vercel-output.mjs",
+    "preview": "npm --prefix presci-scan run preview"
+  }
+}
